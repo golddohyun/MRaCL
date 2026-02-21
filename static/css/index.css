@@ -28,6 +28,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Wider layout like ProbeX — override Bulma's is-max-widescreen */
+.container.is-max-widescreen {
+  max-width: 1200px !important;
+}
+
 body {
   font-family: 'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
   color: var(--text-primary);
@@ -654,6 +659,18 @@ code {
   .content.has-text-justified {
     font-size: 1rem;
   }
+
+  .qualitative-carousel-img {
+    max-width: 95%;
+  }
+
+  .analysis-slide {
+    padding: 1rem;
+  }
+
+  .analysis-slide-img {
+    max-width: 100%;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -729,6 +746,297 @@ code {
 a:focus {
   outline: 2px solid var(--primary-color);
   outline-offset: 2px;
+}
+
+
+/* ===== MRaCL Project Page Custom Styles ===== */
+
+/* Teaser Image */
+.teaser-img {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+/* Architecture Image */
+.architecture-img {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Qualitative Image */
+.qualitative-img {
+  max-width: 100%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Qualitative Carousel Image (smaller) */
+.qualitative-carousel-img {
+  max-width: 75%;
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-md);
+  margin: 0 auto;
+}
+
+/* Analysis Carousel Slide */
+.analysis-slide {
+  padding: 2rem 3rem;
+  text-align: center;
+}
+
+.analysis-slide-img {
+  max-width: 500px;
+  width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin: 0 auto 1.5rem;
+}
+
+.analysis-slide-title {
+  font-size: 1.15rem;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.analysis-slide-desc {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ===== Simple Slider ===== */
+.simple-slider {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+.simple-slider-track {
+  position: relative;
+  width: 100%;
+}
+
+.simple-slider-slide {
+  display: none;
+  width: 100%;
+  animation: fadeSlide 0.4s ease;
+}
+
+.simple-slider-slide.active {
+  display: block;
+}
+
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateX(20px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.simple-slider-prev,
+.simple-slider-next {
+  position: absolute;
+  top: 40%;
+  transform: translateY(-50%);
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: var(--transition);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.simple-slider-prev { left: 0.5rem; }
+.simple-slider-next { right: 0.5rem; }
+
+.simple-slider-prev:hover,
+.simple-slider-next:hover {
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-lg);
+}
+
+.simple-slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1.25rem;
+}
+
+.simple-slider-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+  padding: 0;
+}
+
+.simple-slider-dot.active {
+  background: var(--primary-color);
+  transform: scale(1.3);
+}
+
+/* Result Table Images */
+.result-table-img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-color);
+  margin: 1rem auto;
+}
+
+/* Image Captions */
+.image-caption {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+  line-height: 1.6;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Motivation Figures (side-by-side) */
+.motivation-figures {
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.motivation-img {
+  max-width: 100%;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+/* Method Cards */
+.method-card {
+  background: var(--background-primary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 1.75rem;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+  position: relative;
+}
+
+.method-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary-color);
+}
+
+.method-card .title.is-5 {
+  margin-bottom: 0.75rem !important;
+  padding-bottom: 0;
+  font-size: 1.1rem !important;
+}
+
+.method-card .title.is-5::after {
+  display: none;
+}
+
+.method-card p {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+/* Method Number Badge */
+.method-number-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Analysis Cards */
+.analysis-card {
+  background: var(--background-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-lg);
+  padding: 2rem;
+  height: 100%;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.analysis-card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.analysis-card .title.is-5 {
+  margin-bottom: 1rem !important;
+  padding-bottom: 0.5rem;
+}
+
+.analysis-card .title.is-5::after {
+  display: none;
+}
+
+.analysis-card .content {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.analysis-card .result-table-img {
+  max-width: 100%;
+}
+
+/* Placeholder image style (shows alt text nicely when no image is loaded) */
+img[src$=".png"]:not([src^="http"]) {
+  min-height: 120px;
+  background: var(--background-accent);
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section title adjustment for left-aligned titles in method cards */
+.method-card .title.is-4 {
+  padding-bottom: 0;
+  margin-bottom: 1rem !important;
+}
+
+.method-card .title.is-4::after {
+  display: none;
+}
+
+.method-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: var(--primary-color);
+  color: white;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
 }
 
 

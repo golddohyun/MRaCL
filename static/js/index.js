@@ -72,6 +72,50 @@ function copyBibTeX() {
     }
 }
 
+// Simple Slider
+function slideNav(sliderId, direction) {
+    var slider = document.getElementById(sliderId);
+    var slides = slider.querySelectorAll('.simple-slider-slide');
+    var current = slider.querySelector('.simple-slider-slide.active');
+    var idx = Array.prototype.indexOf.call(slides, current);
+    var next = (idx + direction + slides.length) % slides.length;
+    current.classList.remove('active');
+    slides[next].classList.add('active');
+    updateDots(sliderId, next);
+}
+
+function slideTo(sliderId, idx) {
+    var slider = document.getElementById(sliderId);
+    var slides = slider.querySelectorAll('.simple-slider-slide');
+    slider.querySelector('.simple-slider-slide.active').classList.remove('active');
+    slides[idx].classList.add('active');
+    updateDots(sliderId, idx);
+}
+
+function updateDots(sliderId, activeIdx) {
+    var dots = document.querySelectorAll('#' + sliderId + '-dots .simple-slider-dot');
+    dots.forEach(function(dot, i) {
+        dot.classList.toggle('active', i === activeIdx);
+    });
+}
+
+function initSliderDots(sliderId) {
+    var slider = document.getElementById(sliderId);
+    if (!slider) return;
+    var slides = slider.querySelectorAll('.simple-slider-slide');
+    var dotsContainer = document.getElementById(sliderId + '-dots');
+    if (!dotsContainer) return;
+    for (var i = 0; i < slides.length; i++) {
+        (function(idx) {
+            var dot = document.createElement('button');
+            dot.className = 'simple-slider-dot' + (idx === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (idx + 1));
+            dot.onclick = function() { slideTo(sliderId, idx); };
+            dotsContainer.appendChild(dot);
+        })(i);
+    }
+}
+
 // Scroll to top functionality
 function scrollToTop() {
     window.scrollTo({
@@ -120,14 +164,16 @@ function setupVideoCarouselAutoplay() {
 }
 
 $(document).ready(function() {
-    // Check for click events on the navbar burger icon
+    // Initialize simple slider dots
+    initSliderDots('qualitative-slider');
+    initSliderDots('analysis-slider');
 
     var options = {
 		slidesToScroll: 1,
 		slidesToShow: 1,
 		loop: true,
 		infinite: true,
-		autoplay: true,
+		autoplay: false,
 		autoplaySpeed: 5000,
     }
 
