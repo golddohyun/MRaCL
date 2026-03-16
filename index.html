@@ -108,13 +108,13 @@
             <h1 class="title is-1 publication-title">Towards Motion-aware<br>Referring Image Segmentation</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
-                <a href="#" target="_blank">Chaeyun Kim</a><sup>1,2*</sup>,</span>
+                <a href="golddohyun.github.io" target="_blank">Chaeyun Kim</a><sup>1,2*</sup>,</span>
               <span class="author-block">
-                <a href="#" target="_blank">Seunghoon Yi</a><sup>1*</sup>,</span>
+                <a href="https://www.linkedin.com/in/%EC%8A%B9%ED%9B%88-%EC%9D%B4-a00207218/" target="_blank">Seunghoon Yi</a><sup>1*</sup>,</span>
               <span class="author-block">
-                <a href="#" target="_blank">Yejin Kim</a><sup>1</sup>,</span>
+                <a href="https://www.linkedin.com/in/yejin-kim-4479392a6/" target="_blank">Yejin Kim</a><sup>1</sup>,</span>
               <span class="author-block">
-                <a href="#" target="_blank">Yohan Jo</a><sup>1</sup>,</span>
+                <a href="https://yohanjo.github.io/" target="_blank">Yohan Jo</a><sup>1</sup>,</span>
               <span class="author-block">
                 <a href="http://www.joonseok.net/home.html" target="_blank">Joonseok Lee</a><sup>1&dagger;</sup></span>
             </div>
@@ -349,48 +349,19 @@
     <div class="container is-max-widescreen">
       <div class="columns is-centered has-text-centered">
         <div class="column">
-          <h2 class="title is-3">Qualitative Results</h2>
+          <h2 class="title is-3">Qualitative Analysis</h2>
         </div>
       </div>
       <div class="columns is-centered">
         <div class="column">
-          <div class="content has-text-justified">
-            <p>
-              We illustrate the impact of our method on motion understanding through qualitative examples from MBench.
-              Our method enables the RIS model to correctly identify targets based on <strong>their actions</strong>, 
-              even when multiple visually similar objects are present.
+          <div class="has-text-centered">
+            <img src="static/images/qualitative_new.png" 
+                 alt="Qualitative segmentation results on M-Bench" 
+                 class="qualitative-full-img" loading="lazy" />
+            <p class="image-caption">
+              <strong>Qualitative results on M-Bench.</strong>
+              Our method correctly segments the target by grounding fine-grained action cues such as <em>"running fast,"</em> <em>"snowboarding and holding a selfie stick,"</em> and <em>"balancing on a bike,"</em> while the baseline without MRaCL fails to disambiguate visually similar subjects.
             </p>
-          </div>
-          <!-- Qualitative Slider -->
-          <div class="simple-slider" id="qualitative-slider">
-            <div class="simple-slider-track">
-              <div class="simple-slider-slide active">
-                <div class="has-text-centered">
-                  <img src="static/images/qualitative.png" 
-                       alt="Qualitative examples from MBench test set" 
-                       class="qualitative-carousel-img" loading="lazy" />
-                  <p class="image-caption">
-                    <strong>Qualitative examples from MBench test set.</strong>
-                    (a) CRIS correctly identifies "a person snowboarding and holding a selfie stick" only with MRaCL.
-                    (b) Improved focus on the specific action "arms crossed".
-                    (c) MRaCL correctly disambiguates "the lion strolling forward" from the stationary one.
-                  </p>
-                </div>
-              </div>
-              <div class="simple-slider-slide">
-                <div class="has-text-centered">
-                  <img src="static/images/qualitative_additional.png" 
-                       alt="Additional qualitative examples" 
-                       class="qualitative-carousel-img" loading="lazy" />
-                  <p class="image-caption">
-                    <strong>Additional qualitative examples.</strong>
-                  </p>
-                </div>
-              </div>
-            </div>
-            <button class="simple-slider-prev" onclick="slideNav('qualitative-slider', -1)" aria-label="Previous">&#10094;</button>
-            <button class="simple-slider-next" onclick="slideNav('qualitative-slider', 1)" aria-label="Next">&#10095;</button>
-            <div class="simple-slider-dots" id="qualitative-slider-dots"></div>
           </div>
         </div>
       </div>
@@ -410,45 +381,47 @@
       <!-- Analysis Slider -->
       <div class="simple-slider" id="analysis-slider">
         <div class="simple-slider-track">
-          <!-- Slide 1: Ablation -->
+          <!-- Slide 1: Ablation Study + Ambiguity Filtering -->
           <div class="simple-slider-slide active">
             <div class="analysis-slide">
-              <div class="has-text-centered">
-                <img src="static/images/table4_ablation.png" 
-                     alt="Ablation on proposed components" 
-                     class="analysis-slide-img" loading="lazy" />
-              </div>
               <p class="analysis-slide-title"><strong>Ablation Study</strong></p>
+              <div class="columns is-centered is-vcentered" style="margin-bottom: 0.5rem;">
+                <div class="column is-half has-text-centered">
+                  <img src="static/images/table4_ablation.png" 
+                       alt="Ablation on proposed components" 
+                       class="analysis-slide-img-pair" loading="lazy" />
+                </div>
+                <div class="column is-half has-text-centered">
+                  <img src="static/images/table_ambig_filtering.png" 
+                       alt="Ambiguity filtering strategy comparison" 
+                       class="analysis-slide-img-pair" loading="lazy" />
+                </div>
+              </div>
               <p class="analysis-slide-desc">
-                Each component &mdash; motion-centric augmentation, MRaCL loss, and false negative filtering &mdash; contributes to the overall improvement. Applying all three achieves the best performance.
+                <strong>Left:</strong> Each component&mdash;motion-centric augmentation, MRaCL loss, and false negative filtering&mdash;contributes to the overall improvement; applying all three achieves the best performance.
+                <strong>Right:</strong> Stricter ambiguity filtering (retaining samples where the target category appears only once) produces a cleaner training signal and consistently improves results.
               </p>
             </div>
           </div>
-          <!-- Slide 2: Contrastive Loss -->
+          <!-- Slide 2: Contrastive Loss + Semi-Hard Negative Mining -->
           <div class="simple-slider-slide">
             <div class="analysis-slide">
-              <div class="has-text-centered">
-                <img src="static/images/table_contrastive.png" 
-                     alt="Comparison with various contrastive objectives" 
-                     class="analysis-slide-img" loading="lazy" />
+              <p class="analysis-slide-title"><strong>Training Objective Analysis</strong></p>
+              <div class="columns is-centered is-vcentered" style="margin-bottom: 0.5rem;">
+                <div class="column is-half has-text-centered">
+                  <img src="static/images/table_contrastive.png" 
+                       alt="Comparison with various contrastive objectives" 
+                       class="analysis-slide-img-pair" loading="lazy" />
+                </div>
+                <div class="column is-half has-text-centered">
+                  <img src="static/images/table_semi_hardneg_mine.png" 
+                       alt="Positive alignment vs semi-hard negative mining" 
+                       class="analysis-slide-img-pair" loading="lazy" />
+                </div>
               </div>
-              <p class="analysis-slide-title"><strong>Contrastive Loss Comparison</strong></p>
               <p class="analysis-slide-desc">
-                MRaCL substantially outperforms L2, SimCSE, and InfoNCE (MCC) alternatives by leveraging angular distance with margin penalties.
-              </p>
-            </div>
-          </div>
-          <!-- Slide 3: Anisotropy -->
-          <div class="simple-slider-slide">
-            <div class="analysis-slide">
-              <div class="has-text-centered">
-                <img src="static/images/angle_dist.png" 
-                     alt="Distribution of pairwise angular distances" 
-                     class="analysis-slide-img" loading="lazy" />
-              </div>
-              <p class="analysis-slide-title"><strong>Resolving Anisotropy</strong></p>
-              <p class="analysis-slide-desc">
-                The original model shows tightly clustered embeddings. With MRaCL, the model utilizes a <strong>significantly wider representation space</strong>, enabling more discriminative embeddings for fine-grained action semantics.
+                <strong>Left:</strong> MRaCL substantially outperforms L2, SimCSE, and InfoNCE (MCC) alternatives by leveraging angular distance with explicit margin penalties.
+                <strong>Right:</strong> Semi-hard negative mining consistently degrades performance&mdash;since current RIS models have not yet learned to leverage motion cues, hard negatives act as noise rather than useful signal, motivating our positive alignment strategy.
               </p>
             </div>
           </div>
